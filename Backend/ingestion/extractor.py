@@ -15,3 +15,12 @@ def _extract_pdf(path: str) -> str:
             except Exception as e:
                 print("Pdf had an error: ", e)
     return text
+
+def _extract_docx(path: str) -> str:
+    doc = docx.Document(path)
+    paralist = []
+    for para in doc.paragraphs:
+        text = para.text.strip()
+        if text:
+            paralist.append(text)
+    return "\n".join(paralist)
