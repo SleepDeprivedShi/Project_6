@@ -1,4 +1,4 @@
-import pdfplumber, docx
+import pdfplumber, docx, os
 
 def _extract_txt(path: str) -> str:
     with open(path, 'r', encoding = 'utf-8', errors= "ignore") as f:
@@ -24,3 +24,18 @@ def _extract_docx(path: str) -> str:
         if text:
             paralist.append(text)
     return "\n".join(paralist)
+
+
+
+def dispatch_method(path: str) -> str:
+    _, ext = os.path.splitext(path)
+    ext = ext.lower()
+
+    if ext == '.txt':
+        return _extract_txt(path)
+    elif ext == '.pdf':
+        return _extract_pdf(path)
+    elif ext == '.docx':
+        return _extract_docx(path)
+    else:
+        raise ValueError(f"Unsupported file type: {ext}")
