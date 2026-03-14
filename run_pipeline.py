@@ -6,17 +6,17 @@ from sentence_transformers import SentenceTransformer
 # Add current directory to path so we can import modules
 sys.path.append(str(Path(__file__).parent))
 
-from Ingestion import embedder, build_faiss_index
-from Retriever import retriever, message_builder, service
+from Backend.Ingestion import embedder, build_faiss_index
+from Backend.Retriever import retriever, message_builder, service
 
 # Configuration
-CHUNKS_FILE = Path("Storage/dummy_chunks.jsonl")
-EMBEDDINGS_FILE = Path("Storage/embeddings.npy")
-INDEX_FILE = Path("Storage/index.faiss")
-HISTORY_FILE = Path("Storage/chat_history.jsonl")
+CHUNKS_FILE = Path("Backend/Storage/dummy_chunks.jsonl")
+EMBEDDINGS_FILE = Path("Backend/Storage/embeddings.npy")
+INDEX_FILE = Path("Backend/Storage/index.faiss")
+HISTORY_FILE = Path("Backend/Storage/chat_history.jsonl")
 
 # Load model locally
-MODEL_NAME = "Models/embeddings/e5-small"
+MODEL_NAME = "Models/embeddings/e5-base"
 LLM_NAME = "phi3:3.8b"
 
 def run_test_pipeline():
